@@ -1,0 +1,5 @@
+server:
+  port: 8083
+jwt:
+  expiration:
+    time: 900000
