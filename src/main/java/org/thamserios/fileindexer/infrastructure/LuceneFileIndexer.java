@@ -80,7 +80,7 @@ public class LuceneFileIndexer {
             Directory dir = FSDirectory.open(new File("tmp/indexing").toPath());
             IndexReader indexReader = DirectoryReader.open(dir);
             IndexSearcher searcher = new IndexSearcher(indexReader);
-            TopDocs topDocs = searcher.search(query, 100);
+            TopDocs topDocs = searcher.search(query, indexReader.numDocs());
             List<Document> documents = new ArrayList<>();
             for (ScoreDoc scoreDoc : topDocs.scoreDocs) {
                 documents.add(searcher.doc(scoreDoc.doc));

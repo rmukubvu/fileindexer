@@ -1,17 +1,10 @@
 package org.thamserios.fileindexer;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.Bean;
 import org.thamserios.fileindexer.infrastructure.FileService;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.concurrent.atomic.AtomicInteger;
 
 
 public class FileIndexerApplication  {
@@ -26,8 +19,9 @@ public class FileIndexerApplication  {
         //System.out.println("done indexing");
 
         var document = fileService.search("0092126");
+        AtomicInteger count = new AtomicInteger();
         document.stream().forEach(d -> {
-            System.out.println("0092126" + d.get("lineContent"));
+            System.out.println(count.incrementAndGet() + ": 0092126" + d.get("lineContent"));
         });
         //System.out.println("done searching");
     }
