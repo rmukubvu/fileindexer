@@ -17,11 +17,13 @@ public class FileIndexerApplication  {
         //System.out.println(newFileName);
         //fileService.indexFile("UI.G.UI.FN.LOG.AAB.LM02.X01.G1953V00.new");
         //System.out.println("done indexing");
-
-        var document = fileService.search("0092126");
+        //0126186
+        //0020947
+        var requestNo = "0020947";
+        var document = fileService.search(requestNo);
         AtomicInteger count = new AtomicInteger();
         document.stream().forEach(d -> {
-            System.out.println(count.incrementAndGet() + ": 0092126" + d.get("lineContent"));
+            System.out.println(count.incrementAndGet() + ":" + requestNo + d.get("lineContent"));
         });
         //System.out.println("done searching");
     }
